@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h2>{{ article.article_date }}</h2>
+<h2>{{ article.article_title }}</h2>
+<p>{{ article.article_text }}</p>
+<p>{{ article.article_likes }}</p>
+<h3>Comments</h3>
+{% for comment in comments %}
+<h3>{{ comment.comments_text }}</h3>
+{% endfor %}
+
+</body>
+</html>
