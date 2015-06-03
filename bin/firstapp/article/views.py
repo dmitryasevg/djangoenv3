@@ -4,6 +4,7 @@ from django.http.response import HttpResponse
 from django.template.loader import get_template
 from django.template import Context
 
+from .models import Article, Comments
 from django.shortcuts import render_to_response
 # Create your views here.
 
@@ -21,3 +22,6 @@ def template_two(request):
 def template_three_simple(request):
     view = "template_three_simple"
     return render_to_response('myview.html',{'name':view})
+
+def articles(request):
+    return render_to_response('articles.html',{'article':Article.objects.all()})
