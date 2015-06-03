@@ -24,4 +24,4 @@ def template_three_simple(request):
     return render_to_response('myview.html',{'name':view})
 
 def articles(request):
-    return render_to_response('articles.html',{'article':Article.objects.all()})
+    return render_to_response('articles.html',{'articles':Article.objects.all()})
