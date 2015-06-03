@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'main.html' %}
+{% block article %}
 <h2>{{ article.article_date }}</h2>
 <h2>{{ article.article_title }}</h2>
 <p>{{ article.article_text }}</p>
@@ -13,6 +8,4 @@
 {% for comment in comments %}
 <h3>{{ comment.comments_text }}</h3>
 {% endfor %}
-
-</body>
-</html>
+{% endblock %}
