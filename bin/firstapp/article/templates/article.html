@@ -1,9 +1,12 @@
 {% extends 'main.html' %}
+
+{% load staticfiles %}
+
 {% block article %}
 <h2>{{ article.article_date }}</h2>
 <h2>{{ article.article_title }}</h2>
 <p>{{ article.article_text }}</p>
-<p>{{ article.article_likes }}</p>
+<p><img src = "{% static "buy-facebook-likes.png" %}" width = "25px" heigth = "25px">{{ article.article_likes }}</p>
 <h3>Comments</h3>
 {% for comment in comments %}
 <h3>{{ comment.comments_text }}</h3>

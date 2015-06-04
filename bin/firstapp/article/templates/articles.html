@@ -1,10 +1,13 @@
 {% extends 'main.html' %}
+
+{% load staticfiles %}
+
 {% block article %}
 {% for article in articles %}
 <h2>{{ article.article_date }}</h2>
 <h2><a href="/articles/get/{{ article.id }}/">{{ article.article_title }}</a></h2>
 <p>{{ article.article_text }}</p>
-<p>{{ article.article_likes }}</p>
+<p><img src = "{% static "buy-facebook-likes.png" %}" width = "25px" heigth = "25px"> {{ article.article_likes }}</p>
 <hr>
 {% endfor %}
 {% endblock %}
