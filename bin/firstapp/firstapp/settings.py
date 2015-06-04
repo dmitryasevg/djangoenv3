@@ -108,4 +108,5 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIR = (
     os.path.join(BASE_DIR, 'article/static'),
+    os.path.join(BASE_DIR, 'static'),
 )
