@@ -71,7 +71,10 @@ TEMPLATES = [
     },
 ]
 
-
+TEMPLATES_DIRS = (
+    os.path.join(BASE_DIR,'templates'),
+    os.path.join(BASE_DIR,'article/templates'),
+)
 
 WSGI_APPLICATION = 'firstapp.wsgi.application'
 
