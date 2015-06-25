@@ -1,4 +1,4 @@
-from django.shortcuts import render
+
 from django.http.response import HttpResponse, Http404
 #from django.core.context_processors import csrf
 from django.template.loader import get_template
@@ -6,7 +6,8 @@ from django.template import Context
 from django.core.exceptions import ObjectDoesNotExist
 from models import Article, Comments
 from django.shortcuts import render_to_response, redirect
-
+from django.core.context_processors import csrf
+from article.forms import CommentsForm
 # Create your views here.
 
 def basic_one(request):
@@ -29,9 +30,17 @@ def articles(request):
     return render_to_response('articles.html',{'articles':Article.objects.all()})
 
 def article(request,article_id = 1):
-    return render_to_response('article.html',{'article':Article.objects.get(id = article_id),'comments':Comments.objects.filter(comments_article_id = article_id)})
+    comment_form = CommentsForm
+    args = {}
+    args.update(csrf(request))
+    args['article'] = Article.objects.get(id = article_id)
+    args['comments'] = Comments.objects.filter(comments_article_id = article_id)
+    args['form'] = comment_form
+    return render_to_response('article.html', args)
+
 
 def addlike(request,article_id):
+    #if article_id not in request
     try:
         article = Article.objects.get(id = article_id)
         article.article_likes +=1
@@ -41,4 +50,3 @@ def addlike(request,article_id):
     return redirect('/')
 
 
-    
