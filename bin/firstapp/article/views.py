@@ -8,6 +8,7 @@ from models import Article, Comments
 from django.shortcuts import render_to_response, redirect
 from django.core.context_processors import csrf
 from article.forms import CommentsForm
+
 # Create your views here.
 
 def basic_one(request):
@@ -40,7 +41,6 @@ def article(request,article_id = 1):
 
 
 def addlike(request,article_id):
-    #if article_id not in request
     try:
         article = Article.objects.get(id = article_id)
         article.article_likes +=1
@@ -48,5 +48,14 @@ def addlike(request,article_id):
     except ObjectDoesNotExist:
         raise Http404
     return redirect('/')
+
+def addcomment(request,article_id):
+    if (request.POST):
+        form = CommentsForm(request.POST)
+        if (form.is_valid()):
+            comment = form.save(commit=False)
+            comment.comments_article = Article.objects.get(id = article_id)
+            form.save()
+    return redirect('/articles/get/%s/' % article_id)
 
 
